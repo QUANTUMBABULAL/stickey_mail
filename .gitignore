@@ -1,0 +1,22 @@
+node_modules/
+out/
+dist/
+release/
+.vite/
+*.log
+logs/
+
+# Local secrets — never commit real OAuth credentials
+.env
+.env.local
+.env.*.local
+
+# Generated icon assets (recreated by `npm run icons`)
+build/icon.ico
+build/icon.png
+resources/icon.png
+resources/tray.png
+resources/tray-unread.png
+
+.DS_Store
+Thumbs.db

@@ -1,0 +1,58 @@
+{
+  "name": "mail-sticker",
+  "version": "1.0.0",
+  "description": "A tiny floating Gmail widget that lives on your Windows desktop like a sticky note.",
+  "main": "./out/main/index.js",
+  "private": true,
+  "license": "MIT",
+  "author": {
+    "name": "Mail Sticker"
+  },
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "scripts": {
+    "postinstall": "node scripts/generate-icons.mjs",
+    "dev": "electron-vite dev",
+    "dev:watch": "electron-vite dev --watch",
+    "preview": "electron-vite preview",
+    "build": "npm run typecheck && electron-vite build",
+    "typecheck": "npm run typecheck:node && npm run typecheck:web",
+    "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
+    "typecheck:web": "tsc --noEmit -p tsconfig.web.json --composite false",
+    "icons": "node scripts/generate-icons.mjs",
+    "clean": "node scripts/clean.mjs",
+    "pack": "npm run build && electron-builder --dir --publish never",
+    "dist": "npm run build && electron-builder --win nsis --publish never",
+    "dist:portable": "npm run build && electron-builder --win portable --publish never"
+  },
+  "//overrides": "googleapis-common pins google-auth-library exactly; force one copy so OAuth2Client is a single type.",
+  "overrides": {
+    "google-auth-library": "$google-auth-library"
+  },
+  "dependencies": {
+    "@electron-toolkit/utils": "^4.0.0",
+    "@googleapis/gmail": "^17.0.0",
+    "dotenv": "^17.4.2",
+    "electron-log": "^5.4.4",
+    "google-auth-library": "^10.5.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@tanstack/react-query": "^5.101.4",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^5.2.0",
+    "electron": "^43.2.0",
+    "electron-builder": "^26.15.3",
+    "electron-vite": "^5.0.0",
+    "framer-motion": "^12.43.0",
+    "lucide-react": "^1.28.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.6"
+  }
+}
